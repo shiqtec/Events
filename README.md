@@ -90,7 +90,7 @@ We expect that a new GUID will be generated every time, as it is a transient ser
 
 This is not what happens:
 
-![screenshot](./Images/Screenshot 2022-03-30 235908.png) 
+![screenshot](screenshot.png) 
 
 We have a transient service *TransientService* within a singleton *TickerService* which means that the transient service would be resolved every time.  
 
