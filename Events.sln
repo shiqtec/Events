@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsSimple", "EventsSimple\EventsSimple.csproj", "{A39107BB-AB90-4A02-80BE-9CF5E39350E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventsSimple", "EventsSimple\EventsSimple.csproj", "{A39107BB-AB90-4A02-80BE-9CF5E39350E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsBackgroundService", "EventsBackgroundService\EventsBackgroundService.csproj", "{78854927-AE55-4C0C-9013-691DF6BE8BD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A39107BB-AB90-4A02-80BE-9CF5E39350E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A39107BB-AB90-4A02-80BE-9CF5E39350E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A39107BB-AB90-4A02-80BE-9CF5E39350E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78854927-AE55-4C0C-9013-691DF6BE8BD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78854927-AE55-4C0C-9013-691DF6BE8BD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78854927-AE55-4C0C-9013-691DF6BE8BD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78854927-AE55-4C0C-9013-691DF6BE8BD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
