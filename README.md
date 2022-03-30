@@ -4,8 +4,7 @@
 
 This example is to showcase what events actually are.  
   
-The `EventsSimple` project uses events, namely events that are invoked from when a button is pressed on the keyboard, and a subscriber then prints out a message on the console containing the key that was pressed.
-
+The `EventsSimple` project uses events, namely events that are invoked from when a button is pressed on the keyboard, and a subscriber then prints out a message on the console containing the key that was pressed.  
 > In `Program.cs` we subscribe to the *ButtonPressed* event:
 >
 > ```cs
@@ -37,3 +36,7 @@ The `EventsSimple` project uses events, namely events that are invoked from when
 >     public char Key { get; }
 > }
 > ```
+
+## References
+
+Chapsas, N. [Nick Chapsas]. (2022, March 17). *Are events in C# even relevant anymore?* [Video]. YouTube. https://www.youtube.com/watch?v=NmmpXcMxCjY&ab_channel=NickChapsas
