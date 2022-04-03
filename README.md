@@ -54,22 +54,22 @@ We have multiple subscribers:
 
 If we wanted to print a different GUID every second instead of the time, we would create a new class `TransientService`:
 
-```cs
+> ```cs
 > public class TransientService
 > {
 >     public Guid guid { get; } = Guid.NewGuid();
 > }
-```
+> ```
 
 We then can register this as a transient service in `Program`:
 
-```cs
+> ```cs
 > builder.Services.AddTransient<TransientService>();
-```
+> ```
 
 Finally, we can inject this new service into the `TickerService` and replace the Console message with the data from the new service:
 
-```cs
+> ```cs
 > public event EventHandler<TickerEventArgs>? Ticked;
 > private readonly TransientService _transientService;
 > 
@@ -84,7 +84,7 @@ Finally, we can inject this new service into the `TickerService` and replace the
 > {
 >     Console.WriteLine(_transientService.guid);
 > }
-```
+> ```
 
 We expect that a new GUID will be generated every time, as it is a transient service which means a new instance should be provided to the service and hence a new GUID.  
 
@@ -112,13 +112,13 @@ Here we will use the notification-based MediatR.
 
 In our `Program` file we will add `MediatR` as a service:
 
-```cs
+> ```cs
 > builder.Services.AddMediatR(typeof(Program));
-```
+> ```
 
 Then, in our `TickerBackgroundService` we will inject `MediatR`, using dependency injection, and publish a `TimedNotification` every second asynchronously. The `TimedNotification` is a model that holds the current time.
 
-```cs
+> ```cs
 > private readonly IMediator _mediator;
 
 > public TickerBackgroundService(IMediator mediator)
@@ -135,11 +135,11 @@ Then, in our `TickerBackgroundService` we will inject `MediatR`, using dependenc
 >         await Task.Delay(1000, cancellationToken);
 >     }
 > }
-```
+> ```
 
 We now add our two handlers, that will print out the current time every second and every five seconds:
 
-```cs
+> ```cs
 > public class EverySecondHandler : > INotificationHandler<TimedNotification>
 > {
 >     public Task Handle(TimedNotification notification, > CancellationToken cancellationToken)
@@ -148,9 +148,9 @@ We now add our two handlers, that will print out the current time every second a
 >         return Task.CompletedTask;
 >     }
 > }
-```
+> ```
 
-```cs
+> ```cs
 public class EveryFiveSecondsHandler : INotificationHandler<TimedNotification>
 > {
 >     public Task Handle(TimedNotification notification, CancellationToken cancellationToken)
@@ -162,7 +162,7 @@ public class EveryFiveSecondsHandler : INotificationHandler<TimedNotification>
 >         return Task.CompletedTask;
 >     }
 > }
-```
+> ```
 
 At this point, this behaves the same way as our `EventsBackgroundService` project:
 
