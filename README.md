@@ -190,6 +190,35 @@ We now get our desired behaviour, where a new GUID is generated every second, wi
 
 > ![Screenshot](https://github.com/shiqtec/Events/blob/main/Images/screenshot03.png)
 
+## More on MediatR
+
+`MediatR` facilitates CQRS and Mediator patterns in .NET.
+
+# Mediator Pattern
+
+The mediator pattern is a behavioural design pattern that helps to reduce chaotic dependencies between objects. The communication between objects only happens between a mediator object and no direct communication between objects are allowed.
+
+This creates a loose coupling between classes and as a result becomes more maintainable.
+
+# CQRS
+
+CQRS stands for Command and Query Responsibility Segregation, which is a pattern that separates read and update operations for a data store.
+
+Implementing CQRS ca help maximise the applications performance, scalability and security and allows systems to better evolve over time.
+
+Some of the advantages of this includes:
+- Each can be scaled accordingly.
+- Each can have their own security as per the requirements.
+- Read operation can have a different architecture, for example to support caching or data transformations.
+- Write operations can include data validations, lookups etc. 
+- Can be worked on by separate teams.
+
+More information can be found below.
+
 ## References
 
 Chapsas, N. [Nick Chapsas]. (2022, March 17). *Are events in C# even relevant anymore?* [Video]. YouTube. https://www.youtube.com/watch?v=NmmpXcMxCjY&ab_channel=NickChapsas
+
+Patel, A. (2021, August 3). *Use MediatR in ASP.NET or ASP.NET Core.* Medium. https://medium.com/dotnet-hub/use-mediatr-in-asp-net-or-asp-net-core-cqrs-and-mediator-in-dotnet-how-to-use-mediatr-cqrs-aspnetcore-5076e2f2880c
+
+Butt, M. (2020, November 16). *Using The CQRS Pattern In C#.* C# Corner. https://www.c-sharpcorner.com/article/using-the-cqrs-pattern-in-c-sharp/
