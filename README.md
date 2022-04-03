@@ -1,5 +1,10 @@
 # Events
 
+- [Simple Events](#simple-events)
+- [Background Service Events](#background-service-events)
+- [MediatR](#mediatR)
+- [More on MediatR](#more-on-mediatR)
+
 ## Simple Events
 
 This example is to showcase what events actually are.  
@@ -194,13 +199,13 @@ We now get our desired behaviour, where a new GUID is generated every second, wi
 
 `MediatR` facilitates CQRS and Mediator patterns in .NET.
 
-# Mediator Pattern
+### Mediator Pattern
 
 The mediator pattern is a behavioural design pattern that helps to reduce chaotic dependencies between objects. The communication between objects only happens between a mediator object and no direct communication between objects are allowed.
 
 This creates a loose coupling between classes and as a result becomes more maintainable.
 
-# CQRS
+### CQRS
 
 CQRS stands for Command and Query Responsibility Segregation, which is a pattern that separates read and update operations for a data store.
 
