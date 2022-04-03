@@ -120,12 +120,12 @@ Then, in our `TickerBackgroundService` we will inject `MediatR`, using dependenc
 
 > ```cs
 > private readonly IMediator _mediator;
-
+> 
 > public TickerBackgroundService(IMediator mediator)
 > {
 >     _mediator = mediator;
 > }
-
+> 
 > protected override async Task ExecuteAsync(CancellationTok> cancellationToken)
 > {
 >     while (!cancellationToken.IsCancellationRequested)
@@ -151,7 +151,7 @@ We now add our two handlers, that will print out the current time every second a
 > ```
 
 > ```cs
-public class EveryFiveSecondsHandler : INotificationHandler<TimedNotification>
+> public class EveryFiveSecondsHandler : INotificationHandler<TimedNotification>
 > {
 >     public Task Handle(TimedNotification notification, CancellationToken cancellationToken)
 >     {
