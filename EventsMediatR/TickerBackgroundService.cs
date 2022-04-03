@@ -1,19 +1,23 @@
-﻿namespace EventsBackgroundService
+﻿using EventsMediatR;
+using MediatR;
+
+namespace EventsBackgroundService
 {
     public class TickerBackgroundService : BackgroundService
     {
-        private readonly TickerService _tickerService;
+        private readonly IMediator _mediator;
 
-        public TickerBackgroundService(TickerService tickerService)
+        public TickerBackgroundService(IMediator mediator)
         {
-            _tickerService = tickerService;
+            _mediator = mediator;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                _tickerService.OnTick(TimeOnly.FromDateTime(DateTime.Now));
+                var timeNow = TimeOnly.FromDateTime(DateTime.Now);
+                await _mediator.Publish(new TimedNotification(timeNow), stoppingToken);
                 await Task.Delay(1000, stoppingToken);
             }
         }
