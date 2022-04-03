@@ -90,7 +90,7 @@ We expect that a new GUID will be generated every time, as it is a transient ser
 
 This is not what happens:
 
-![Screenshot](https://github.com/shiqtec/Events/blob/main/Images/screenshot01.png) 
+![Screenshot](https://github.com/shiqtec/Events/blob/main/Images/screenshot01.png)
 
 We have a transient service *TransientService* within a singleton *TickerService* which means that the transient service would be resolved every time.  
 
@@ -109,6 +109,66 @@ There are two types MediatR messages:
 - Notification messages that is dispatched to *multiple handlers*.
 
 Here we will use the notification-based MediatR.
+
+In our `Program` file we will add `MediatR` as a service:
+
+```cs
+> builder.Services.AddMediatR(typeof(Program));
+```
+
+Then, in our `TickerBackgroundService` we will inject `MediatR`, using dependency injection, and publish a `TimedNotification` every second asynchronously. The `TimedNotification` is a model that holds the current time.
+
+```cs
+> private readonly IMediator _mediator;
+
+> public TickerBackgroundService(IMediator mediator)
+> {
+>     _mediator = mediator;
+> }
+
+> protected override async Task ExecuteAsync(CancellationTok> cancellationToken)
+> {
+>     while (!cancellationToken.IsCancellationRequested)
+>     {
+>         var timeNow = TimeOnly.FromDateTime(DateTime.Now);
+>         await _mediator.Publish(new TimedNotification(timeNow), cancellationToken);
+>         await Task.Delay(1000, cancellationToken);
+>     }
+> }
+```
+
+We now add our two handlers, that will print out the current time every second and every five seconds:
+
+```cs
+> public class EverySecondHandler : > INotificationHandler<TimedNotification>
+> {
+>     public Task Handle(TimedNotification notification, > CancellationToken cancellationToken)
+>     {
+>         Console.WriteLine(notification.Time.ToLongTimeString());
+>         return Task.CompletedTask;
+>     }
+> }
+```
+
+```cs
+public class EveryFiveSecondsHandler : INotificationHandler<TimedNotification>
+> {
+>     public Task Handle(TimedNotification notification, CancellationToken cancellationToken)
+>     {
+>         if(notification.Time.Second % 5 == 0)
+>         {
+>             Console.WriteLine(notification.Time.ToLongTimeString());
+>         }
+>         return Task.CompletedTask;
+>     }
+> }
+```
+
+At this point, this behaves the same way as our `EventsBackgroundService` project:
+
+![Screenshot](https://github.com/shiqtec/Events/blob/main/Images/screenshot02.png)
+
+
 
 ## References
 
