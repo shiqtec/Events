@@ -90,7 +90,7 @@ We expect that a new GUID will be generated every time, as it is a transient ser
 
 This is not what happens:
 
-![Screenshot](https://github.com/shiqtec/Events/blob/main/Images/screenshot01.png)
+> ![Screenshot](https://github.com/shiqtec/Events/blob/main/Images/screenshot01.png)
 
 We have a transient service *TransientService* within a singleton *TickerService* which means that the transient service would be resolved every time.  
 
@@ -166,9 +166,29 @@ We now add our two handlers, that will print out the current time every second a
 
 At this point, this behaves the same way as our `EventsBackgroundService` project:
 
-![Screenshot](https://github.com/shiqtec/Events/blob/main/Images/screenshot02.png)
+> ![Screenshot](https://github.com/shiqtec/Events/blob/main/Images/screenshot02.png)
 
+This behaves the same way, but we are now easily able to inject our `TransientGUIDService`, which will be instantiated every time i.e. a new GUID will be generated each time, which we were unable to easily do in our `BackgroundService` project: 
 
+In our `EverySecondHandler` we will inject the `TransientGUIDService` and print out the GUID:
+
+> ```cs
+> private readonly TransientGUIDService _guidService;
+>
+> public EverySecondHandler(TransientGUIDService guidService)
+> {
+>     _guidService = guidService;
+> }
+> public Task Handle(TimedNotification notification,CancellationToken > cancellationToken)
+> {
+>     Console.WriteLine(_guidService.guid);
+>     return Task.CompletedTask;
+> }
+> ```
+
+We now get our desired behaviour, where a new GUID is generated every second, with the current time being printed out every five seconds:
+
+> ![Screenshot](https://github.com/shiqtec/Events/blob/main/Images/screenshot03.png)
 
 ## References
 
