@@ -12,13 +12,13 @@ namespace EventsBackgroundService
             _mediator = mediator;
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override async Task ExecuteAsync(CancellationToken cancellationToken)
         {
-            while (!stoppingToken.IsCancellationRequested)
+            while (!cancellationToken.IsCancellationRequested)
             {
                 var timeNow = TimeOnly.FromDateTime(DateTime.Now);
-                await _mediator.Publish(new TimedNotification(timeNow), stoppingToken);
-                await Task.Delay(1000, stoppingToken);
+                await _mediator.Publish(new TimedNotification(timeNow), cancellationToken);
+                await Task.Delay(1000, cancellationToken);
             }
         }
     }
