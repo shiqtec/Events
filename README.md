@@ -2,8 +2,13 @@
 
 - [Simple Events](#simple-events)
 - [Background Service Events](#background-service-events)
+    - [A Problem](#a-problem)
+    - [The Solution](#the-solution)
 - [MediatR](#mediatR)
 - [More on MediatR](#more-on-mediatR)
+    - [Mediator Pattern](#mediator-pattern)
+    - [CQRS](#cqrs)
+- [References](#references)
 
 ## Simple Events
 
